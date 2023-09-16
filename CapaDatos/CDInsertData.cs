@@ -28,6 +28,7 @@ namespace CapaDatos
 
                 int rowsAffected = command.ExecuteNonQuery();
                 Console.WriteLine($"Filas afectadas: {rowsAffected}");
+                MessageBox.Show("Usuario creado exitosamente!");
             }
             catch (Exception ex)
             {

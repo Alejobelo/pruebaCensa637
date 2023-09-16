@@ -17,5 +17,9 @@ namespace CapaNegocio
             MessageBox.Show($"user enviado:{user.Name} ");
             InsertData.InsertUser(user);
         }
+        public void Logueo(CEUser user)
+        {
+            CDLogueo.LogueoCD(user);
+        }
     }
 }

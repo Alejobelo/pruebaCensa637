@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using CapaEntidades;
 
 namespace CapaDatos
 {
@@ -39,6 +40,37 @@ namespace CapaDatos
             MySqlConnection mySqlConnection = new MySqlConnection(conexion);
             mySqlConnection.Close();
         }
-    }
+        public void LogueoCD(CEUser user)
+        {
+            MySqlConnection connection = new MySqlConnection(conexion);
+
+            connection.Open();
+
+            string queryLogueo= "SELECT * FROM usuarios WHERE documento = @documento AND contrasela = @contrasela";
+
+            MySqlCommand comando = new MySqlCommand(queryLogueo, connection);
+
+            comando.Parameters.AddWithValue("@documento", user.Id);
+            comando.Parameters.AddWithValue("@contrasela", user.Password);
+            try
+            {
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            if (reader.Read())
+            {
+                MessageBox.Show("Acceso exitoso");
+            }
+            else
+            {
+                MessageBox.Show("Credenciales incorrectas");
+            }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+        }
+    }    
 }
 

@@ -38,11 +38,12 @@
             textBox3 = new TextBox();
             label5 = new Label();
             textBox4 = new TextBox();
+            button3 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(54, 168);
+            button1.Location = new Point(25, 168);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -52,7 +53,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(243, 168);
+            button2.Location = new Point(121, 168);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -127,11 +128,22 @@
             textBox4.Size = new Size(100, 23);
             textBox4.TabIndex = 9;
             // 
+            // button3
+            // 
+            button3.Location = new Point(211, 168);
+            button3.Name = "button3";
+            button3.Size = new Size(107, 23);
+            button3.TabIndex = 10;
+            button3.Text = "Ya tengo usuario";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 221);
+            Controls.Add(button3);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
@@ -161,5 +173,6 @@
         private TextBox textBox3;
         private Label label5;
         private TextBox textBox4;
+        private Button button3;
     }
 }

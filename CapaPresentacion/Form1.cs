@@ -42,7 +42,7 @@ namespace CapaPresentacion
             try
             {
                 if (id != null && name != null && lastName != null && password != null)
-                {   
+                {
                     CNLogueo register = new CNLogueo();
                     CEUser user = new CEUser()
                     {
@@ -52,10 +52,11 @@ namespace CapaPresentacion
                         Password = password,
                     };
                     CNLogueo.Register(user);
-  
-                    MessageBox.Show("Datos del usuario:", $"ID: {user.Id} Nombre: {user.Name} Apellido: {user.LastName}");
-
                 }
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
             }
             catch
             {
@@ -69,6 +70,12 @@ namespace CapaPresentacion
         private void button2_Click(object sender, EventArgs e)
         {
             CNLogueo.PruebaMysql();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
         }
     }
 }
