@@ -22,20 +22,36 @@ namespace CapaPresentacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            Form2 form2 = new Form2();
-            form2.Close();
-            form1.Show();
+            Form1 register = new Form1();
+            this.Close();
+            register.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CEUser user = new CEUser()
+            EntidadesCE user = new EntidadesCE()
             {
                 Id = Convert.ToInt32(textBox1.Text),
                 Password = textBox2.Text
             };
-            cNLogueo.Logueo(user);
+            if (cNLogueo.Logueo(user))
+            {
+                Menu menu = new Menu();
+                menu.Show();
+                this.Hide();
+            }
+            else return;
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validator validator = new Validator();
+            validator.vnumero(e);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

@@ -40,7 +40,7 @@ namespace CapaDatos
             MySqlConnection mySqlConnection = new MySqlConnection(conexion);
             mySqlConnection.Close();
         }
-        public void LogueoCD(CEUser user)
+        public bool LogueoCD(EntidadesCE user)
         {
             MySqlConnection connection = new MySqlConnection(conexion);
 
@@ -58,15 +58,17 @@ namespace CapaDatos
 
             if (reader.Read())
             {
-                MessageBox.Show("Acceso exitoso");
+                return true;
             }
             else
             {
-                MessageBox.Show("Credenciales incorrectas");
+                MessageBox.Show("Credenciales incorrectas");   
+                    return false;
             }
             }catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return false;
             }
 
 

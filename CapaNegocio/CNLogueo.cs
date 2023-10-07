@@ -12,14 +12,20 @@ namespace CapaNegocio
         {
             CDLogueo.PruebaConexion();
         }
-        public void Register(CEUser user)
+        public void Register(EntidadesCE user)
         {
             MessageBox.Show($"user enviado:{user.Name} ");
             InsertData.InsertUser(user);
         }
-        public void Logueo(CEUser user)
+        public bool Logueo(EntidadesCE user)
         {
-            CDLogueo.LogueoCD(user);
+
+            return CDLogueo.LogueoCD(user);
+            
+        }
+        public void CrearCliente(Clientes cliente)
+        {
+            InsertData.InsertCliente(cliente);
         }
     }
 }

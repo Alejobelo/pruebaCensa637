@@ -1,6 +1,6 @@
 using CapaEntidades;
 using CapaNegocio;
-using static CapaEntidades.CEUser;
+using static CapaEntidades.EntidadesCE;
 namespace CapaPresentacion
 {
     public partial class Form1 : Form
@@ -44,7 +44,7 @@ namespace CapaPresentacion
                 if (id != null && name != null && lastName != null && password != null)
                 {
                     CNLogueo register = new CNLogueo();
-                    CEUser user = new CEUser()
+                    EntidadesCE user = new EntidadesCE()
                     {
                         Id = Convert.ToInt32(id),
                         Name = name,
@@ -74,8 +74,14 @@ namespace CapaPresentacion
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.Show();
+            Form2 login = new Form2();
+            login.Show();
+            this.Hide();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

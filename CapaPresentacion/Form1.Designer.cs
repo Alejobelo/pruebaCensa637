@@ -84,9 +84,10 @@
             label3.AutoSize = true;
             label3.Location = new Point(82, 27);
             label3.Name = "label3";
-            label3.Size = new Size(18, 15);
+            label3.Size = new Size(70, 15);
             label3.TabIndex = 4;
-            label3.Text = "ID";
+            label3.Text = "Documento";
+            label3.Click += label3_Click;
             // 
             // textBox1
             // 
