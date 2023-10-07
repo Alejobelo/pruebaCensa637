@@ -126,6 +126,7 @@
             // 
             textBox4.Location = new Point(169, 113);
             textBox4.Name = "textBox4";
+            textBox4.PasswordChar = '*';
             textBox4.Size = new Size(100, 23);
             textBox4.TabIndex = 9;
             // 

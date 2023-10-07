@@ -26,43 +26,28 @@ namespace CapaPresentacion
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            CNLogueo getData = new CNLogueo();
             if (checkBox1.Checked)
             {
+                dataGridView2.Visible = false;
                 checkBox2.Checked = false;
+                dataGridView1.Visible = true;
+                dataGridView1.DataSource = getData.DataProveedores();
             }
 
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
+            CNLogueo getData = new CNLogueo();
             if (checkBox2.Checked)
             {
+                dataGridView1.Visible = false;
                 checkBox1.Checked = false;
+                dataGridView2.Visible = true;
+                dataGridView2.DataSource = getData.DataClientes();
             }
 
-            DataTable dataTable = new DataTable("Clientes");
-
-            // Define las columnas de la DataTable
-            dataTable.Columns.Add("ID_Cliente", typeof(int));
-            dataTable.Columns.Add("Nombre", typeof(string));
-            dataTable.Columns.Add("Apellido", typeof(string));
-            dataTable.Columns.Add("Direccion", typeof(string));
-            dataTable.Columns.Add("Telefono", typeof(string));
-            dataTable.Columns.Add("CorreoElectronico", typeof(string));
-
-            DataRow newRow = dataTable.NewRow();
-
-            // Establecer los valores para cada columna en la nueva fila
-            newRow["ID_Cliente"] = 1; // ID del cliente
-            newRow["Nombre"] = "Juan";
-            newRow["Apellido"] = "Pérez";
-            newRow["Direccion"] = "Calle 123";
-            newRow["Telefono"] = "123-456-7890";
-            newRow["CorreoElectronico"] = "juan@example.com";
-
-            dataTable.Rows.Add(newRow);
-
-            dataGridView1.DataSource = dataTable;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -71,6 +56,8 @@ namespace CapaPresentacion
                 string id = numericUpDown1.Text;
                 string name = textBox2.Text;
                 string lastName = textBox3.Text;
+                string person = "";
+
 
 
                 try
@@ -78,14 +65,21 @@ namespace CapaPresentacion
                     if (id != null && name != null && lastName != null)
                     {
                         CNLogueo insertData = new CNLogueo();
-                        Clientes cliente = new Clientes()
+                        ClientesProvedores clientesProvedores = new ClientesProvedores()
                         {
-                            Id_Cliente = Convert.ToInt32(id),
+                            Id = Convert.ToInt32(id),
                             Nombre = name,
                             Apellido = lastName,
                             //Foto = password,
                         };
-                        insertData.CrearCliente(cliente);
+                        if (checkBox1.Checked)
+                        {
+                            insertData.CrearProveedor(clientesProvedores);
+                        }
+                        if (checkBox2.Checked)
+                        {
+                            insertData.CrearCliente(clientesProvedores);
+                        }
 
                     }
                     numericUpDown1.Text = "";
@@ -100,7 +94,7 @@ namespace CapaPresentacion
                     }
                 }
             }
-        
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -114,6 +108,11 @@ namespace CapaPresentacion
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
         {
 
         }

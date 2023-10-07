@@ -9,20 +9,13 @@ namespace CapaEntidades
         public string? LastName;
         public string Password;
     }
-    public class Clientes {
-        public int Id_Cliente;
+    public class ClientesProvedores {
+        public int Id;
     public string? Nombre;
     public string? Apellido;
     public string? Foto;
     }
 
-    public class Proveedores
-    {
-        public int Id_Proveedor;
-        public string? Nombre;
-        public string? Apellido;
-        public string? Foto;
-    }
     public class Productos
     {
         public int Id_Producto;

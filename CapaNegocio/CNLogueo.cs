@@ -1,5 +1,6 @@
 ﻿using CapaDatos;
 using CapaEntidades;
+using System.Data;
 
 namespace CapaNegocio
 {
@@ -23,9 +24,24 @@ namespace CapaNegocio
             return CDLogueo.LogueoCD(user);
             
         }
-        public void CrearCliente(Clientes cliente)
+        public void CrearCliente(ClientesProvedores person)
         {
-            InsertData.InsertCliente(cliente);
+            InsertData.InsertCliente(person);
         }
+        public void CrearProveedor (ClientesProvedores person)
+        {
+            InsertData.InsertProveedor(person);
+        }
+
+
+        public DataTable DataProveedores()
+        {
+            return CDLogueo.ObtenerDatosProveedores();
+        }
+        public DataTable DataClientes()
+        {
+            return CDLogueo.ObtenerDatosClientes();
+        }
+
     }
 }

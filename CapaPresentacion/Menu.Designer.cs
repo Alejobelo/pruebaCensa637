@@ -46,12 +46,12 @@
             numericUpDown1 = new NumericUpDown();
             label1 = new Label();
             dataGridView1 = new DataGridView();
-            Nombre = new DataGridViewTextBoxColumn();
-            Apellido = new DataGridViewTextBoxColumn();
+            dataGridView2 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // checkBox1
@@ -72,7 +72,7 @@
             checkBox2.Name = "checkBox2";
             checkBox2.Size = new Size(68, 19);
             checkBox2.TabIndex = 1;
-            checkBox2.Text = "Cleintes";
+            checkBox2.Text = "Clientes";
             checkBox2.UseVisualStyleBackColor = true;
             checkBox2.CheckedChanged += checkBox2_CheckedChanged;
             // 
@@ -181,14 +181,15 @@
             button5.TabIndex = 18;
             button5.Text = "Inventario";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(button4);
             groupBox1.Controls.Add(button5);
-            groupBox1.Location = new Point(325, 287);
+            groupBox1.Location = new Point(387, 270);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(210, 63);
+            groupBox1.Size = new Size(217, 63);
             groupBox1.TabIndex = 22;
             groupBox1.TabStop = false;
             groupBox1.Text = "Modulos";
@@ -213,29 +214,30 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nombre, Apellido });
-            dataGridView1.Location = new Point(366, 114);
+            dataGridView1.Location = new Point(329, 70);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(240, 150);
+            dataGridView1.Size = new Size(334, 150);
             dataGridView1.TabIndex = 25;
+            dataGridView1.Visible = false;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // Nombre
+            // dataGridView2
             // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
-            // 
-            // Apellido
-            // 
-            Apellido.HeaderText = "Column1";
-            Apellido.Name = "Apellido";
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(329, 74);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowTemplate.Height = 25;
+            dataGridView2.Size = new Size(334, 150);
+            dataGridView2.TabIndex = 26;
+            dataGridView2.Visible = false;
             // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(615, 371);
+            ClientSize = new Size(710, 371);
+            Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(numericUpDown1);
@@ -258,6 +260,7 @@
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -282,7 +285,6 @@
         private NumericUpDown numericUpDown1;
         private Label label1;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Nombre;
-        private DataGridViewTextBoxColumn Apellido;
+        private DataGridView dataGridView2;
     }
 }

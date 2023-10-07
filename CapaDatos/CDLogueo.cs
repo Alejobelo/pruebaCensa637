@@ -1,11 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
 using CapaEntidades;
+using System.Data;
 
 namespace CapaDatos
 {
     public class CDLogueo
     {
-        string conexion = "Server=localhost;User=root;Password=h42wfhnf;Port=3306;database=pruebacensa";
+        string conexion = "Server=localhost;User=root;Port=3306;database=pruebacensa";
     
     public void PruebaConexion()
         {
@@ -72,6 +73,54 @@ namespace CapaDatos
             }
 
 
+        }
+
+  
+
+
+        public DataTable ObtenerDatosProveedores()
+        {
+            DataTable dataTable = new DataTable();
+
+            MySqlConnection connection = new MySqlConnection(conexion);
+
+            {
+                connection.Open();
+
+                string consulta = "SELECT * FROM proveedores";
+
+                using (MySqlCommand comando = new MySqlCommand(consulta, connection))
+                {
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(comando))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+            }
+
+            return dataTable;
+        }
+        public DataTable ObtenerDatosClientes()
+        {
+            DataTable dataTable = new DataTable();
+
+            MySqlConnection connection = new MySqlConnection(conexion);
+
+            {
+                connection.Open();
+
+                string consulta = "SELECT * FROM clientes";
+
+                using (MySqlCommand comando = new MySqlCommand(consulta, connection))
+                {
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(comando))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+            }
+
+            return dataTable;
         }
     }    
 }
