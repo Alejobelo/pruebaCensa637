@@ -1,4 +1,6 @@
-﻿namespace CapaEntidades
+﻿using System.Data;
+
+namespace CapaEntidades
 {
     public class EntidadesCE
     {

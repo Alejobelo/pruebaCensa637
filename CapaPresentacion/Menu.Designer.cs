@@ -40,19 +40,18 @@
             button3 = new Button();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
-            checkBox3 = new CheckBox();
-            checkBox4 = new CheckBox();
             button4 = new Button();
             button5 = new Button();
-            button6 = new Button();
-            checkBox5 = new CheckBox();
-            checkBox6 = new CheckBox();
             groupBox1 = new GroupBox();
             numericUpDown1 = new NumericUpDown();
             label1 = new Label();
+            dataGridView1 = new DataGridView();
+            Nombre = new DataGridViewTextBoxColumn();
+            Apellido = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // checkBox1
@@ -164,88 +163,36 @@
             textBox3.Size = new Size(100, 23);
             textBox3.TabIndex = 13;
             // 
-            // checkBox3
-            // 
-            checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(44, 42);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(88, 19);
-            checkBox3.TabIndex = 15;
-            checkBox3.Text = "Facturacion";
-            checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(44, 81);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(79, 19);
-            checkBox4.TabIndex = 16;
-            checkBox4.Text = "Inventario";
-            checkBox4.UseVisualStyleBackColor = true;
-            // 
             // button4
             // 
-            button4.Location = new Point(199, 50);
+            button4.Location = new Point(109, 22);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 17;
-            button4.Text = "Crear";
+            button4.Text = "Ventas";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button5
             // 
-            button5.Location = new Point(199, 96);
+            button5.Location = new Point(28, 22);
             button5.Name = "button5";
             button5.Size = new Size(75, 23);
             button5.TabIndex = 18;
-            button5.Text = "Actualizar";
+            button5.Text = "Inventario";
             button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(199, 142);
-            button6.Name = "button6";
-            button6.Size = new Size(75, 23);
-            button6.TabIndex = 19;
-            button6.Text = "Eliminar";
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            checkBox5.AutoSize = true;
-            checkBox5.Location = new Point(44, 120);
-            checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(123, 19);
-            checkBox5.TabIndex = 20;
-            checkBox5.Text = "Cuenats por pagar";
-            checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            checkBox6.AutoSize = true;
-            checkBox6.Location = new Point(44, 160);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(127, 19);
-            checkBox6.TabIndex = 21;
-            checkBox6.Text = "Cuentas por cobrar";
-            checkBox6.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(checkBox3);
-            groupBox1.Controls.Add(checkBox6);
-            groupBox1.Controls.Add(checkBox4);
-            groupBox1.Controls.Add(checkBox5);
             groupBox1.Controls.Add(button4);
-            groupBox1.Controls.Add(button6);
             groupBox1.Controls.Add(button5);
-            groupBox1.Location = new Point(284, 25);
+            groupBox1.Location = new Point(325, 287);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(319, 245);
+            groupBox1.Size = new Size(210, 63);
             groupBox1.TabIndex = 22;
             groupBox1.TabStop = false;
-            groupBox1.Text = "CRUD";
+            groupBox1.Text = "Modulos";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // numericUpDown1
             // 
@@ -263,11 +210,33 @@
             label1.TabIndex = 24;
             label1.Text = "ID";
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nombre, Apellido });
+            dataGridView1.Location = new Point(366, 114);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(240, 150);
+            dataGridView1.TabIndex = 25;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.Name = "Nombre";
+            // 
+            // Apellido
+            // 
+            Apellido.HeaderText = "Column1";
+            Apellido.Name = "Apellido";
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(615, 371);
+            Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(numericUpDown1);
             Controls.Add(groupBox1);
@@ -287,8 +256,8 @@
             Text = "Form3";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -307,15 +276,13 @@
         private Button button3;
         private TextBox textBox2;
         private TextBox textBox3;
-        private CheckBox checkBox3;
-        private CheckBox checkBox4;
         private Button button4;
         private Button button5;
-        private Button button6;
-        private CheckBox checkBox5;
-        private CheckBox checkBox6;
         private GroupBox groupBox1;
         private NumericUpDown numericUpDown1;
         private Label label1;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn Nombre;
+        private DataGridViewTextBoxColumn Apellido;
     }
 }

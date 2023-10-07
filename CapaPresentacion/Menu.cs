@@ -39,6 +39,30 @@ namespace CapaPresentacion
             {
                 checkBox1.Checked = false;
             }
+
+            DataTable dataTable = new DataTable("Clientes");
+
+            // Define las columnas de la DataTable
+            dataTable.Columns.Add("ID_Cliente", typeof(int));
+            dataTable.Columns.Add("Nombre", typeof(string));
+            dataTable.Columns.Add("Apellido", typeof(string));
+            dataTable.Columns.Add("Direccion", typeof(string));
+            dataTable.Columns.Add("Telefono", typeof(string));
+            dataTable.Columns.Add("CorreoElectronico", typeof(string));
+
+            DataRow newRow = dataTable.NewRow();
+
+            // Establecer los valores para cada columna en la nueva fila
+            newRow["ID_Cliente"] = 1; // ID del cliente
+            newRow["Nombre"] = "Juan";
+            newRow["Apellido"] = "Pérez";
+            newRow["Direccion"] = "Calle 123";
+            newRow["Telefono"] = "123-456-7890";
+            newRow["CorreoElectronico"] = "juan@example.com";
+
+            dataTable.Rows.Add(newRow);
+
+            dataGridView1.DataSource = dataTable;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,7 +71,7 @@ namespace CapaPresentacion
                 string id = numericUpDown1.Text;
                 string name = textBox2.Text;
                 string lastName = textBox3.Text;
-   
+
 
                 try
                 {
@@ -62,7 +86,7 @@ namespace CapaPresentacion
                             //Foto = password,
                         };
                         insertData.CrearCliente(cliente);
-                      
+
                     }
                     numericUpDown1.Text = "";
                     textBox2.Text = "";
@@ -76,6 +100,22 @@ namespace CapaPresentacion
                     }
                 }
             }
+        
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
