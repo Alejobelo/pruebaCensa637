@@ -6,7 +6,7 @@ namespace CapaDatos
 {
     public class CDLogueo
     {
-        string conexion = "Server=localhost;User=root;Port=3306;database=pruebacensa";
+        string conexion = "Server=localhost;User=root;Port=3306;Password=h42wfhnf;database=pruebacensa";
     
     public void PruebaConexion()
         {
@@ -45,6 +45,8 @@ namespace CapaDatos
         {
             MySqlConnection connection = new MySqlConnection(conexion);
 
+            try
+            {
             connection.Open();
 
             string queryLogueo= "SELECT * FROM usuarios WHERE documento = @documento AND contrasela = @contrasela";
@@ -53,8 +55,6 @@ namespace CapaDatos
 
             comando.Parameters.AddWithValue("@documento", user.Id);
             comando.Parameters.AddWithValue("@contrasela", user.Password);
-            try
-            {
             MySqlDataReader reader = comando.ExecuteReader();
 
             if (reader.Read())

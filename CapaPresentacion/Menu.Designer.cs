@@ -46,18 +46,17 @@
             numericUpDown1 = new NumericUpDown();
             label1 = new Label();
             dataGridView1 = new DataGridView();
-            dataGridView2 = new DataGridView();
+            openFileDialog1 = new OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(50, 25);
+            checkBox1.Location = new Point(25, 25);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(91, 19);
             checkBox1.TabIndex = 0;
@@ -78,7 +77,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(107, 310);
+            button1.Location = new Point(111, 336);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 2;
@@ -88,7 +87,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(202, 310);
+            button2.Location = new Point(206, 336);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 3;
@@ -98,7 +97,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(50, 106);
+            label2.Location = new Point(25, 106);
             label2.Name = "label2";
             label2.Size = new Size(51, 15);
             label2.TabIndex = 5;
@@ -107,7 +106,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(49, 144);
+            label3.Location = new Point(24, 144);
             label3.Name = "label3";
             label3.Size = new Size(51, 15);
             label3.TabIndex = 6;
@@ -116,7 +115,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(50, 191);
+            label4.Location = new Point(25, 191);
             label4.Name = "label4";
             label4.Size = new Size(31, 15);
             label4.TabIndex = 7;
@@ -125,24 +124,25 @@
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(50, 209);
+            linkLabel1.Location = new Point(25, 209);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(67, 15);
             linkLabel1.TabIndex = 8;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Seleccionar";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(123, 191);
+            pictureBox1.Location = new Point(111, 191);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(133, 75);
+            pictureBox1.Size = new Size(166, 122);
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
             // 
             // button3
             // 
-            button3.Location = new Point(21, 310);
+            button3.Location = new Point(25, 336);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 10;
@@ -151,14 +151,14 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(123, 106);
+            textBox2.Location = new Point(111, 107);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 12;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(123, 144);
+            textBox3.Location = new Point(111, 145);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(100, 23);
             textBox3.TabIndex = 13;
@@ -171,7 +171,6 @@
             button4.TabIndex = 17;
             button4.Text = "Ventas";
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
             // 
             // button5
             // 
@@ -181,23 +180,21 @@
             button5.TabIndex = 18;
             button5.Text = "Inventario";
             button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(button4);
             groupBox1.Controls.Add(button5);
-            groupBox1.Location = new Point(387, 270);
+            groupBox1.Location = new Point(394, 314);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(217, 63);
             groupBox1.TabIndex = 22;
             groupBox1.TabStop = false;
             groupBox1.Text = "Modulos";
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(123, 67);
+            numericUpDown1.Location = new Point(111, 68);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(100, 23);
             numericUpDown1.TabIndex = 23;
@@ -205,7 +202,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(68, 70);
+            label1.Location = new Point(43, 70);
             label1.Name = "label1";
             label1.Size = new Size(18, 15);
             label1.TabIndex = 24;
@@ -214,30 +211,22 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(329, 70);
+            dataGridView1.Location = new Point(329, 25);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(334, 150);
+            dataGridView1.Size = new Size(355, 241);
             dataGridView1.TabIndex = 25;
-            dataGridView1.Visible = false;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
-            // dataGridView2
+            // openFileDialog1
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(329, 74);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowTemplate.Height = 25;
-            dataGridView2.Size = new Size(334, 150);
-            dataGridView2.TabIndex = 26;
-            dataGridView2.Visible = false;
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(710, 371);
-            Controls.Add(dataGridView2);
+            ClientSize = new Size(710, 430);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(numericUpDown1);
@@ -260,7 +249,6 @@
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -285,6 +273,6 @@
         private NumericUpDown numericUpDown1;
         private Label label1;
         private DataGridView dataGridView1;
-        private DataGridView dataGridView2;
+        private OpenFileDialog openFileDialog1;
     }
 }

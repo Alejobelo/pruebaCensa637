@@ -14,6 +14,7 @@ namespace CapaPresentacion
 {
     public partial class Menu : Form
     {
+
         public Menu()
         {
             InitializeComponent();
@@ -29,9 +30,7 @@ namespace CapaPresentacion
             CNLogueo getData = new CNLogueo();
             if (checkBox1.Checked)
             {
-                dataGridView2.Visible = false;
                 checkBox2.Checked = false;
-                dataGridView1.Visible = true;
                 dataGridView1.DataSource = getData.DataProveedores();
             }
 
@@ -42,10 +41,8 @@ namespace CapaPresentacion
             CNLogueo getData = new CNLogueo();
             if (checkBox2.Checked)
             {
-                dataGridView1.Visible = false;
                 checkBox1.Checked = false;
-                dataGridView2.Visible = true;
-                dataGridView2.DataSource = getData.DataClientes();
+                dataGridView1.DataSource = getData.DataClientes();
             }
 
         }
@@ -56,21 +53,18 @@ namespace CapaPresentacion
                 string id = numericUpDown1.Text;
                 string name = textBox2.Text;
                 string lastName = textBox3.Text;
-                string person = "";
-
-
-
                 try
                 {
                     if (id != null && name != null && lastName != null)
                     {
+                        string ruta = openFileDialog1.FileName;
                         CNLogueo insertData = new CNLogueo();
                         ClientesProvedores clientesProvedores = new ClientesProvedores()
                         {
                             Id = Convert.ToInt32(id),
                             Nombre = name,
                             Apellido = lastName,
-                            //Foto = password,
+                            Foto = ruta
                         };
                         if (checkBox1.Checked)
                         {
@@ -85,6 +79,7 @@ namespace CapaPresentacion
                     numericUpDown1.Text = "";
                     textBox2.Text = "";
                     textBox3.Text = "";
+                    pictureBox1.Image = null;
 
                 }
                 catch
@@ -97,24 +92,31 @@ namespace CapaPresentacion
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                
+                string ruta = openFileDialog1.FileName;
+                pictureBox1.Image = Image.FromFile(ruta);
+            }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
+            try
+            {
+            numericUpDown1.Value = Convert.ToDecimal(dataGridView1.CurrentRow.Cells["id_proveedor"].Value);
+            textBox2.Text = dataGridView1.CurrentRow.Cells["nombre"].Value.ToString();
+            textBox3.Text = dataGridView1.CurrentRow.Cells["apellido"].Value.ToString(); ;
+            pictureBox1.Image = Image.FromFile(dataGridView1.CurrentRow.Cells["foto"].Value.ToString());
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+            catch
+            {
+                Console.WriteLine("imagen null");
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CapaEntidades;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace CapaDatos
     public class CDInsertData
     {   
         CDLogueo CDLogueo = new CDLogueo();
+            string conexion = "Server=localhost;User=root;Port=3306;Password=h42wfhnf;database=pruebacensa";
         public void InsertUser(EntidadesCE User) {
-            string conexion = "Server=localhost;User=root;Port=3306;database=pruebacensa";
             MySqlConnection connection = new MySqlConnection(conexion);
             try
             {
@@ -41,18 +42,21 @@ namespace CapaDatos
         }
         public void InsertCliente(ClientesProvedores Cliente)
         {
-            string conexion = "Server=localhost;User=root;Port=3306;database=pruebacensa";
+            string conexion = "Server=localhost;User=root;Port=3306;Password=h42wfhnf;database=pruebacensa";
             MySqlConnection connection = new MySqlConnection(conexion);
             try
             {
+
                 connection.Open();
 
-                string insertQuery = "INSERT INTO clientes (id_cliente, nombre, apellido) VALUES (@id_cliente, @nombre, @apellido)";
+
+                string insertQuery = "INSERT INTO clientes (id_cliente, nombre, apellido, foto) VALUES (@id_cliente, @nombre, @apellido, @foto)";
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
 
                 command.Parameters.AddWithValue("@id_cliente", Cliente.Id);
                 command.Parameters.AddWithValue("@nombre", Cliente.Nombre);
                 command.Parameters.AddWithValue("@apellido", Cliente.Apellido);
+                command.Parameters.AddWithValue("@foto", Cliente.Foto);
 
                 int rowsAffected = command.ExecuteNonQuery();
                 Console.WriteLine($"Filas afectadas: {rowsAffected}");
@@ -69,18 +73,18 @@ namespace CapaDatos
         }
         public void InsertProveedor(ClientesProvedores Proveedor)
         {
-            string conexion = "Server=localhost;User=root;Port=3306;database=pruebacensa";
             MySqlConnection connection = new MySqlConnection(conexion);
             try
             {
                 connection.Open();
 
-                string insertQuery = "INSERT INTO proveedores (id_proveedor, nombre, apellido) VALUES (@id_proveedor, @nombre, @apellido)";
+                string insertQuery = "INSERT INTO proveedores (id_proveedor, nombre, apellido, foto) VALUES (@id_proveedor, @nombre, @apellido, @foto)";
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
 
                 command.Parameters.AddWithValue("@id_proveedor", Proveedor.Id);
                 command.Parameters.AddWithValue("@nombre", Proveedor.Nombre);
                 command.Parameters.AddWithValue("@apellido", Proveedor.Apellido);
+                command.Parameters.AddWithValue("@foto", Proveedor.Foto);
 
                 int rowsAffected = command.ExecuteNonQuery();
                 Console.WriteLine($"Filas afectadas: {rowsAffected}");
