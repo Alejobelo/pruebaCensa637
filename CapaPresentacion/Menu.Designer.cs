@@ -30,8 +30,8 @@
         {
             checkBox1 = new CheckBox();
             checkBox2 = new CheckBox();
-            button1 = new Button();
-            button2 = new Button();
+            guardar = new Button();
+            eliminar = new Button();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
@@ -47,6 +47,8 @@
             label1 = new Label();
             dataGridView1 = new DataGridView();
             openFileDialog1 = new OpenFileDialog();
+            button6 = new Button();
+            actualizar = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -75,24 +77,25 @@
             checkBox2.UseVisualStyleBackColor = true;
             checkBox2.CheckedChanged += checkBox2_CheckedChanged;
             // 
-            // button1
+            // guardar
             // 
-            button1.Location = new Point(111, 336);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Guardar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            guardar.Location = new Point(179, 336);
+            guardar.Name = "guardar";
+            guardar.Size = new Size(75, 23);
+            guardar.TabIndex = 2;
+            guardar.Text = "Guardar";
+            guardar.UseVisualStyleBackColor = true;
+            guardar.Click += guardar_Click;
             // 
-            // button2
+            // eliminar
             // 
-            button2.Location = new Point(206, 336);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 3;
-            button2.Text = "Eliminar";
-            button2.UseVisualStyleBackColor = true;
+            eliminar.Location = new Point(179, 375);
+            eliminar.Name = "eliminar";
+            eliminar.Size = new Size(75, 23);
+            eliminar.TabIndex = 3;
+            eliminar.Text = "Eliminar";
+            eliminar.UseVisualStyleBackColor = true;
+            eliminar.Click += eliminar_Click_1;
             // 
             // label2
             // 
@@ -142,12 +145,13 @@
             // 
             // button3
             // 
-            button3.Location = new Point(25, 336);
+            button3.Location = new Point(59, 336);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 10;
             button3.Text = "Nuevo";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // textBox2
             // 
@@ -222,11 +226,31 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button6
+            // 
+            button6.Location = new Point(0, 0);
+            button6.Name = "button6";
+            button6.Size = new Size(75, 23);
+            button6.TabIndex = 26;
+            button6.Text = "button6";
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // actualizar
+            // 
+            actualizar.Location = new Point(59, 375);
+            actualizar.Name = "actualizar";
+            actualizar.Size = new Size(75, 23);
+            actualizar.TabIndex = 27;
+            actualizar.Text = "Actualizar";
+            actualizar.UseVisualStyleBackColor = true;
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(710, 430);
+            Controls.Add(actualizar);
+            Controls.Add(button6);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(numericUpDown1);
@@ -239,12 +263,13 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(eliminar);
+            Controls.Add(guardar);
             Controls.Add(checkBox2);
             Controls.Add(checkBox1);
             Name = "Menu";
-            Text = "Form3";
+            Text = "Menu";
+            Shown += Menu_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
@@ -257,8 +282,8 @@
 
         private CheckBox checkBox1;
         private CheckBox checkBox2;
-        private Button button1;
-        private Button button2;
+        private Button actualizar;
+        private Button eliminar;
         private Label label2;
         private Label label3;
         private Label label4;
@@ -274,5 +299,7 @@
         private Label label1;
         private DataGridView dataGridView1;
         private OpenFileDialog openFileDialog1;
+        private Button guardar;
+        private Button button6;
     }
 }

@@ -75,8 +75,6 @@ namespace CapaDatos
 
         }
 
-  
-
 
         public DataTable ObtenerDatosProveedores()
         {
@@ -87,7 +85,7 @@ namespace CapaDatos
             {
                 connection.Open();
 
-                string consulta = "SELECT * FROM proveedores";
+                string consulta = "SELECT * FROM proveedores WHERE estado = 1";
 
                 using (MySqlCommand comando = new MySqlCommand(consulta, connection))
                 {
@@ -109,7 +107,7 @@ namespace CapaDatos
             {
                 connection.Open();
 
-                string consulta = "SELECT * FROM clientes";
+                string consulta = "SELECT * FROM clientes WHERE estado = 1";
 
                 using (MySqlCommand comando = new MySqlCommand(consulta, connection))
                 {
@@ -121,6 +119,34 @@ namespace CapaDatos
             }
 
             return dataTable;
+        }
+        public void eliminar(int id, string person, string table)
+        {
+            MySqlConnection connection = new MySqlConnection(conexion);
+
+            
+                connection.Open();
+
+                string actualizar = $"UPDATE {table} SET estado = 0 WHERE id_{person} = @id";
+
+                using (MySqlCommand cmd = new MySqlCommand(actualizar, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Proveedor actualizado con éxito.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontró el proveedor con el ID proporcionado.");
+                    }
+
+                }
+
+            MessageBox.Show("registro eliminado");
         }
     }    
 }
