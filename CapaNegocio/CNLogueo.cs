@@ -7,13 +7,11 @@ namespace CapaNegocio
 {
     public class CNLogueo
     {
-        CDInsertData InsertData = new CDInsertData();
+        CDCreate InsertData = new CDCreate();
         CDLogueo CDLogueo = new CDLogueo();
-
-        public void PruebaMysql()
-        {
-            CDLogueo.PruebaConexion();
-        }
+        CDRead CDRead = new CDRead();
+        CDDelete CDDelete = new CDDelete();
+        CDUpdate CDUpdate = new CDUpdate();
         public void Register(EntidadesCE user)
         {
             MessageBox.Show($"user enviado:{user.Name} ");
@@ -37,23 +35,35 @@ namespace CapaNegocio
 
         public DataTable DataProveedores()
         {
-            return CDLogueo.ObtenerDatosProveedores();
+            return CDRead.ObtenerDatosProveedores();
         }
         public DataTable DataClientes()
         {
-            return CDLogueo.ObtenerDatosClientes();
+            return CDRead.ObtenerDatosClientes();
         }
         public void eliminarCliente( int id) 
         {
             string person = "cliente";
             string table = "clientes";
-            CDLogueo.eliminar(id, person, table);
+            CDDelete.eliminar(id, person, table);
         }
         public void eliminarProveedor(int id)
         {
             string person = "proveedor";
             string table = "proveedores";
-            CDLogueo.eliminar(id, person, table);
+            CDDelete.eliminar(id, person, table);
+        }
+        public void actualizarCliente(ClientesProvedores personClass)
+        {
+            string person = "cliente";
+            string table = "clientes";
+            CDUpdate.UClientesProveedores(person, table, personClass);
+        }
+        public void actualizarProveedor(ClientesProvedores personClass)
+        {
+            string person = "proveedor";
+            string table = "proveedores";
+            CDUpdate.UClientesProveedores(person, table, personClass);
         }
 
     }

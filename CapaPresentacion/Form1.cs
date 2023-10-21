@@ -67,11 +67,6 @@ namespace CapaPresentacion
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            CNLogueo.PruebaMysql();
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             Form2 login = new Form2();

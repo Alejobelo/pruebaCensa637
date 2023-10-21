@@ -22,49 +22,58 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
-
-
-
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void Menu_Shown(object sender, EventArgs e)
         {
-            numericUpDown1.Enabled = true;
-            textBox2.Enabled = true;
-            textBox3.Enabled = true;
-            linkLabel1.Enabled = true;
-            if (checkBox1.Checked)
-            {
-                checkBox2.Checked = false;
-                dataGridView1.DataSource = getData.DataProveedores();
-                dataGridView1.Columns[0].HeaderText = "ID";
-                dataGridView1.Columns[3].Visible = false;
-                dataGridView1.Columns[4].Visible = false;
 
+            if (checkBox1.Checked != true && checkBox2.Checked != true)
+            {
+                numericUpDown1.Enabled = false;
+                textBox2.Enabled = false;
+                textBox3.Enabled = false;
+                linkLabel1.Enabled = false;
+                actualizar.Enabled = false;
+                eliminar.Enabled = false;
+                dataGridView1.ReadOnly = true;
 
             }
-
         }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void actualizarDataClientes()
         {
-          
-            numericUpDown1.Enabled = true;
-            textBox2.Enabled = true;
-            textBox3.Enabled = true;
-            linkLabel1.Enabled = true;
-            if (checkBox2.Checked)
-            {
-                checkBox1.Checked = false;
+                numericUpDown1.Enabled = true;
+                textBox2.Enabled = true;
+                textBox3.Enabled = true;
+                linkLabel1.Enabled = true;
                 dataGridView1.DataSource = getData.DataClientes();
                 dataGridView1.Columns[0].HeaderText = "Id cliente";
                 dataGridView1.Columns[3].Visible = false;
                 dataGridView1.Columns[4].Visible = false;
-            }
+        }
+
+        private void actualizarDataProveedores()
+        {
+                numericUpDown1.Enabled = true;
+                textBox2.Enabled = true;
+                textBox3.Enabled = true;
+                linkLabel1.Enabled = true;
+                dataGridView1.DataSource = getData.DataProveedores();
+                dataGridView1.Columns[0].HeaderText = "ID";
+                dataGridView1.Columns[3].Visible = false;
+                dataGridView1.Columns[4].Visible = false;
+        }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            actualizarDataProveedores();
+            checkBox2.Checked = false;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            actualizarDataClientes();
+            checkBox1.Checked = false;
         }
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            {
                 string id = numericUpDown1.Text;
                 string name = textBox2.Text;
                 string lastName = textBox3.Text;
@@ -95,7 +104,6 @@ namespace CapaPresentacion
                     textBox2.Text = "";
                     textBox3.Text = "";
                     pictureBox1.Image = null;
-
                 }
                 catch
                 {
@@ -103,11 +111,7 @@ namespace CapaPresentacion
                         MessageBox.Show("Todos los campo son requeridos");
                     }
                 }
-            }
-
         }
-
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             openFileDialog1.Filter = "Imagenes (*.jpg)|*.jpg; (*.png)|*.png";
@@ -119,12 +123,41 @@ namespace CapaPresentacion
             }
         }
         DataTable dataTable = null;
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            numericUpDown1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            pictureBox1.Image = null;
+            actualizar.Enabled = false;
+        }
+        private void eliminar_Click_1(object sender, EventArgs e)
+        {
+            int id = -1;
+            id = Convert.ToInt32(numericUpDown1.Text);
+            if (checkBox2.Checked)
+            {
+                getData.eliminarCliente(id);
+                checkBox1.Checked = false;
+                actualizarDataClientes();
+            }
+            if (checkBox1.Checked)
+            {
+                getData.eliminarProveedor(id);
+                checkBox2.Checked = false;
+                actualizarDataProveedores();
+            }
+            
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             pictureBox1.Image = null;
             guardar.Enabled = false;
             linkLabel1.Enabled = false;
             eliminar.Enabled = true;
+            actualizar.Enabled = true;
             string person = "";
             if (checkBox1.Checked)
             {
@@ -152,74 +185,51 @@ namespace CapaPresentacion
             }
         }
 
-        private void Menu_Shown(object sender, EventArgs e)
+        private void actualizar_Click(object sender, EventArgs e)
         {
-
-            if (checkBox1.Checked != true && checkBox2.Checked != true)
-            {
-                numericUpDown1.Enabled = false;
-                textBox2.Enabled = false;
-                textBox3.Enabled = false;
-                linkLabel1.Enabled = false;
-                actualizar.Enabled = false;
-                eliminar.Enabled = false;
-
+            string id = numericUpDown1.Text;
+            string name = textBox2.Text;
+            string lastName = textBox3.Text;
+            string ruta = "";
+            if (openFileDialog1.FileName != "") {
+                ruta= openFileDialog1.FileName;
             }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            numericUpDown1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            pictureBox1.Image = null;
-            actualizar.Enabled = false;
-        }
-
-
-        private void eliminar_Click_1(object sender, EventArgs e)
-        {
+            else{
+                ruta = "sin foto";
+            }
+            try
             {
-                int id = -1;
-                id = Convert.ToInt32(numericUpDown1.Text);
-                if (checkBox2.Checked)
+                if (id != null && name != null && lastName != null)
                 {
-                    
-                    getData.eliminarCliente(id);
-
-                    numericUpDown1.Enabled = true;
-                    textBox2.Enabled = true;
-                    textBox3.Enabled = true;
-                    linkLabel1.Enabled = true;
-                    if (checkBox2.Checked)
+                    CNLogueo insertData = new CNLogueo();
+                    ClientesProvedores clientesProvedores = new ClientesProvedores()
                     {
-                        checkBox1.Checked = false;
-                        dataGridView1.DataSource = getData.DataClientes();
-                        dataGridView1.Columns[0].HeaderText = "Id cliente";
-                        dataGridView1.Columns[3].Visible = false;
-                        dataGridView1.Columns[4].Visible = false;
-                    }
-
-                }
-                if(checkBox1.Checked)
-                {
-                    getData.eliminarProveedor(id);
-                    numericUpDown1.Enabled = true;
-                    textBox2.Enabled = true;
-                    textBox3.Enabled = true;
-                    linkLabel1.Enabled = true;
+                        Id = Convert.ToInt32(id),
+                        Nombre = name,
+                        Apellido = lastName,
+                        Foto = ruta
+                    };
                     if (checkBox1.Checked)
                     {
-                        checkBox2.Checked = false;
-                        dataGridView1.DataSource = getData.DataProveedores();
-                        dataGridView1.Columns[0].HeaderText = "ID";
-                        dataGridView1.Columns[3].Visible = false;
-                        dataGridView1.Columns[4].Visible = false;
-
-
+                        insertData.actualizarProveedor(clientesProvedores);
+                    }
+                    if (checkBox2.Checked)
+                    {
+                        insertData.actualizarCliente(clientesProvedores);
                     }
                 }
+                numericUpDown1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                pictureBox1.Image = null;
             }
+            catch
+            {
+                {
+                    MessageBox.Show("Todos los campo son requeridos");
+                }
+            }
+
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class CDInsertData
+    public class CDCreate
     {   
         CDLogueo CDLogueo = new CDLogueo();
             string conexion = "Server=localhost;User=root;Port=3306;Password=h42wfhnf;database=pruebacensa";

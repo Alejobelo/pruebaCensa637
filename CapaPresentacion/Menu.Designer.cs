@@ -47,7 +47,6 @@
             label1 = new Label();
             dataGridView1 = new DataGridView();
             openFileDialog1 = new OpenFileDialog();
-            button6 = new Button();
             actualizar = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
@@ -214,26 +213,19 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.ImeMode = ImeMode.NoControl;
             dataGridView1.Location = new Point(329, 25);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(355, 241);
             dataGridView1.TabIndex = 25;
-            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            dataGridView1.CellMouseClick += dataGridView1_CellMouseClick;
             // 
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // button6
-            // 
-            button6.Location = new Point(0, 0);
-            button6.Name = "button6";
-            button6.Size = new Size(75, 23);
-            button6.TabIndex = 26;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
             // 
             // actualizar
             // 
@@ -243,6 +235,7 @@
             actualizar.TabIndex = 27;
             actualizar.Text = "Actualizar";
             actualizar.UseVisualStyleBackColor = true;
+            actualizar.Click += actualizar_Click;
             // 
             // Menu
             // 
@@ -250,7 +243,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(710, 430);
             Controls.Add(actualizar);
-            Controls.Add(button6);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(numericUpDown1);
@@ -300,6 +292,5 @@
         private DataGridView dataGridView1;
         private OpenFileDialog openFileDialog1;
         private Button guardar;
-        private Button button6;
     }
 }
